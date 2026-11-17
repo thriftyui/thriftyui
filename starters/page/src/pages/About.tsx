@@ -1,8 +1,12 @@
+import { Heading, Text } from 'thriftyui/typography'
+
 export function About() {
   return (
     <div className="mx-auto max-w-prose px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">About</h1>
-      <p className="mt-3 text-neutral-11">What this app is.</p>
+      <Heading level={1}>About</Heading>
+      <Text quiet className="mt-3">
+        What this app is.
+      </Text>
     </div>
   )
 }

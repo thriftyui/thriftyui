@@ -1,7 +1,7 @@
 # ThriftyUI
 
 A React UI kit: components on Radix Primitives and Radix Colors, styled
-with Tailwind CSS 4. The package is `thriftyui` (0.1.0); its docs are at
+with Tailwind CSS 4. The package is `thriftyui` (0.2.0); its docs are at
 https://www.thriftyui.com, and for language models at
 https://www.thriftyui.com/llms.txt.
 
