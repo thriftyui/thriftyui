@@ -1,0 +1,535 @@
+/* ThriftyUI's theme: the colours, corners, bar sizes, density, finish,
+   shadows and motion the components use. An app imports it after Tailwind
+   and tells Tailwind to read the kit's files, which it skips in
+   node_modules:
+
+     @import "tailwindcss";
+     @import "thriftyui/theme.css";
+     @source "../node_modules/thriftyui/dist"; */
+
+/* The colours: Radix Colors, each scale in a light and a dark file, the
+   dark values under the .dark class. Transparent black for the dim behind
+   sheets and dialogs. */
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/gray-dark.css";
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/blue-dark.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/red-dark.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/green-dark.css";
+@import "@radix-ui/colors/yellow.css";
+@import "@radix-ui/colors/yellow-dark.css";
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/white-alpha.css";
+
+/* The components name colours as semantic scales, as Radix Colors'
+   aliasing does: neutral (gray here) for everything plain, accent (blue)
+   for what is chosen or acted on, danger (red) for what cannot be undone,
+   success (green) and warning (yellow) for states. Another scale is a
+   theme: thriftyui/themes.css sets them by data-accent and data-neutral.
+   Declared under :root and .light, and .dark, as Radix Colors declares its
+   scales, so a part set light or dark gets its own values. */
+:root,
+.light,
+.dark {
+  --neutral-1: var(--gray-1);
+  --neutral-2: var(--gray-2);
+  --neutral-3: var(--gray-3);
+  --neutral-4: var(--gray-4);
+  --neutral-5: var(--gray-5);
+  --neutral-6: var(--gray-6);
+  --neutral-7: var(--gray-7);
+  --neutral-8: var(--gray-8);
+  --neutral-9: var(--gray-9);
+  --neutral-10: var(--gray-10);
+  --neutral-11: var(--gray-11);
+  --neutral-12: var(--gray-12);
+  --accent-1: var(--blue-1);
+  --accent-2: var(--blue-2);
+  --accent-3: var(--blue-3);
+  --accent-4: var(--blue-4);
+  --accent-5: var(--blue-5);
+  --accent-6: var(--blue-6);
+  --accent-7: var(--blue-7);
+  --accent-8: var(--blue-8);
+  --accent-9: var(--blue-9);
+  --accent-10: var(--blue-10);
+  --accent-11: var(--blue-11);
+  --accent-12: var(--blue-12);
+  --danger-1: var(--red-1);
+  --danger-2: var(--red-2);
+  --danger-3: var(--red-3);
+  --danger-4: var(--red-4);
+  --danger-5: var(--red-5);
+  --danger-6: var(--red-6);
+  --danger-7: var(--red-7);
+  --danger-8: var(--red-8);
+  --danger-9: var(--red-9);
+  --danger-10: var(--red-10);
+  --danger-11: var(--red-11);
+  --danger-12: var(--red-12);
+  --success-1: var(--green-1);
+  --success-2: var(--green-2);
+  --success-3: var(--green-3);
+  --success-4: var(--green-4);
+  --success-5: var(--green-5);
+  --success-6: var(--green-6);
+  --success-7: var(--green-7);
+  --success-8: var(--green-8);
+  --success-9: var(--green-9);
+  --success-10: var(--green-10);
+  --success-11: var(--green-11);
+  --success-12: var(--green-12);
+  --warning-1: var(--yellow-1);
+  --warning-2: var(--yellow-2);
+  --warning-3: var(--yellow-3);
+  --warning-4: var(--yellow-4);
+  --warning-5: var(--yellow-5);
+  --warning-6: var(--yellow-6);
+  --warning-7: var(--yellow-7);
+  --warning-8: var(--yellow-8);
+  --warning-9: var(--yellow-9);
+  --warning-10: var(--yellow-10);
+  --warning-11: var(--yellow-11);
+  --warning-12: var(--yellow-12);
+}
+
+/* Tailwind's own palette removed (--color-*: initial), so only these
+   colours exist, and each step of each semantic scale made a utility --
+   bg-neutral-2, border-neutral-6, text-neutral-12, bg-accent-9. `inline`,
+   so a utility uses the variable itself and changes with .dark and the
+   theme. Each step has Radix's use: 1-2 backgrounds, 3-5 component
+   backgrounds, 6-8 borders, 9-10 solid backgrounds, 11-12 text.
+
+   Where WCAG 1.4.11 asks 3:1 for what identifies a control and its state,
+   the kit uses a stronger step, computed from @radix-ui/colors 3.0.0 over
+   all 25 accents and 6 neutrals in light and dark:
+     focus rings          accent 11: at least 3.42:1 on neutral 1 to 5
+     the edges of fields, checkboxes, radios, the switch's off track,
+     scrollbar thumbs, the tracks of bars and sliders
+                          neutral 9: at least 3.14:1 on neutral 1 and 2
+     what shows a state or an amount -- a radio's dot, a bar's fill, a
+     slider's range      accent 12: at least 3.27:1 on a neutral 9 track
+     a field's edge while it fails
+                          danger 11: at least 4.93:1 on neutral 1 and 2 */
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+}
+@theme inline {
+  --color-neutral-1: var(--neutral-1);
+  --color-neutral-2: var(--neutral-2);
+  --color-neutral-3: var(--neutral-3);
+  --color-neutral-4: var(--neutral-4);
+  --color-neutral-5: var(--neutral-5);
+  --color-neutral-6: var(--neutral-6);
+  --color-neutral-7: var(--neutral-7);
+  --color-neutral-8: var(--neutral-8);
+  --color-neutral-9: var(--neutral-9);
+  --color-neutral-10: var(--neutral-10);
+  --color-neutral-11: var(--neutral-11);
+  --color-neutral-12: var(--neutral-12);
+  --color-accent-1: var(--accent-1);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-accent-5: var(--accent-5);
+  --color-accent-6: var(--accent-6);
+  --color-accent-7: var(--accent-7);
+  --color-accent-8: var(--accent-8);
+  --color-accent-9: var(--accent-9);
+  --color-accent-10: var(--accent-10);
+  --color-accent-11: var(--accent-11);
+  --color-accent-12: var(--accent-12);
+  --color-danger-1: var(--danger-1);
+  --color-danger-2: var(--danger-2);
+  --color-danger-3: var(--danger-3);
+  --color-danger-4: var(--danger-4);
+  --color-danger-5: var(--danger-5);
+  --color-danger-6: var(--danger-6);
+  --color-danger-7: var(--danger-7);
+  --color-danger-8: var(--danger-8);
+  --color-danger-9: var(--danger-9);
+  --color-danger-10: var(--danger-10);
+  --color-danger-11: var(--danger-11);
+  --color-danger-12: var(--danger-12);
+  --color-success-1: var(--success-1);
+  --color-success-2: var(--success-2);
+  --color-success-3: var(--success-3);
+  --color-success-4: var(--success-4);
+  --color-success-5: var(--success-5);
+  --color-success-6: var(--success-6);
+  --color-success-7: var(--success-7);
+  --color-success-8: var(--success-8);
+  --color-success-9: var(--success-9);
+  --color-success-10: var(--success-10);
+  --color-success-11: var(--success-11);
+  --color-success-12: var(--success-12);
+  --color-warning-1: var(--warning-1);
+  --color-warning-2: var(--warning-2);
+  --color-warning-3: var(--warning-3);
+  --color-warning-4: var(--warning-4);
+  --color-warning-5: var(--warning-5);
+  --color-warning-6: var(--warning-6);
+  --color-warning-7: var(--warning-7);
+  --color-warning-8: var(--warning-8);
+  --color-warning-9: var(--warning-9);
+  --color-warning-10: var(--warning-10);
+  --color-warning-11: var(--warning-11);
+  --color-warning-12: var(--warning-12);
+  --color-black-a1: var(--black-a1);
+  --color-black-a2: var(--black-a2);
+  --color-black-a3: var(--black-a3);
+  --color-black-a4: var(--black-a4);
+  --color-black-a5: var(--black-a5);
+  --color-black-a6: var(--black-a6);
+  --color-black-a7: var(--black-a7);
+  --color-black-a8: var(--black-a8);
+  --color-black-a9: var(--black-a9);
+  --color-black-a10: var(--black-a10);
+  --color-black-a11: var(--black-a11);
+  --color-black-a12: var(--black-a12);
+}
+
+/* The parts' own colours: each part's colour by name, its default the semantic scale's
+   step it has always taken, so nothing changes unless a theme sets one --
+   a theme's --button-solid, say, colours solid buttons alone, so each
+   part can take any colour. The fallback is resolved where the class is
+   used (`inline`, as above), so a part set to another theme by its
+   attributes takes that theme's role. The steps are those the parts
+   use. */
+@theme inline {
+  --color-page: var(--page, var(--neutral-1)); /* the page's background, the body's (below) */
+  --color-page-bar: var(--page-bar, var(--neutral-1)); /* the page's header and footer: their own, so a page background set leaves them be */
+  --color-page-line: var(--page-line, var(--neutral-6)); /* their lines */
+  --color-column: var(--column, var(--neutral-2)); /* a column's body */
+  --color-column-bar: var(--column-bar, var(--neutral-1)); /* a column's header, footer and the bottom bar */
+  --color-column-line: var(--column-line, var(--neutral-6)); /* a column's lines */
+  --color-column-edge: var(--column-edge, var(--accent-8)); /* a column's edge, hovered */
+  --color-column-edge-active: var(--column-edge-active, var(--accent-11)); /* a column's edge, dragged or focused */
+  --color-card: var(--card, var(--neutral-1)); /* a card's ground */
+  --color-card-line: var(--card-line, var(--neutral-6));
+  --color-popover: var(--popover, var(--card, var(--neutral-1))); /* what floats over the page: popovers, hover cards, menus, select lists, toasts; a card's unless set, one colour for both as Radix Themes gives them */
+  --color-popover-line: var(--popover-line, var(--card-line, var(--neutral-6)));
+  --color-popover-text: var(--popover-text, var(--neutral-12));
+  --color-overlay: var(--overlay, var(--overlay-shade)); /* the shade over the page behind a dialog or sheet */ /* its edge */
+  --color-bank-card: var(--bank-card, var(--card, var(--neutral-1))); /* a BankCard's ground: a card's unless set */
+  --color-bank-card-line: var(--bank-card-line, var(--neutral-7)); /* its edge */
+  --color-bank-card-text: var(--bank-card-text, var(--neutral-12)); /* the words and numbers on it */
+  --color-bank-card-print: var(--bank-card-print, var(--neutral-9)); /* its security printing: microprint and guilloché */
+  --color-dialog: var(--dialog, var(--neutral-1)); /* a dialog's or sheet's body */
+  --color-dialog-bar: var(--dialog-bar, var(--neutral-1)); /* its header and footer */
+  --color-dialog-line: var(--dialog-line, var(--neutral-6)); /* its edge and lines */
+  --color-button: var(--button, var(--neutral-2)); /* a plain button */
+  --color-button-text: var(--button-text, var(--neutral-11)); /* its text */
+  --color-button-solid: var(--button-solid, var(--accent-12)); /* a solid button */
+  --color-button-solid-text: var(--button-solid-text, var(--neutral-1)); /* its text */
+  --color-button-danger: var(--button-danger, var(--danger-11)); /* a danger button */
+  --color-button-danger-text: var(--button-danger-text, var(--neutral-1)); /* its text */
+  --color-field: var(--field, var(--neutral-1)); /* a field's ground, and a checkbox's or radio's */
+  --color-field-border: var(--field-border, var(--neutral-9)); /* its edge */
+  --color-field-border-hover: var(--field-border-hover, var(--neutral-10)); /* its edge, hovered */
+  --color-field-error: var(--field-error, var(--danger-11)); /* a failing field's edge and message */
+  --color-focus: var(--focus, var(--accent-11)); /* the focus ring, on every part */
+  --color-choice-on: var(--choice-on, var(--accent-12)); /* what is on or filled: a checked box, a radio's dot, a switch on, a slider's range, a bar's fill */
+  --color-choice-track: var(--choice-track, var(--neutral-9)); /* a switch off, a slider's or bar's track */
+  --color-chosen: var(--chosen, var(--neutral-5)); /* a chosen tab, row or toggle */
+  --color-chosen-text: var(--chosen-text, var(--accent-12)); /* its text */
+  --color-menu-highlight: var(--menu-highlight, var(--neutral-4)); /* a menu's highlighted item */
+  --color-badge: var(--badge, var(--neutral-3)); /* a plain badge */
+  --color-badge-text: var(--badge-text, var(--neutral-11)); /* its text */
+  --color-badge-accent: var(--badge-accent, var(--accent-3)); /* an accent badge */
+  --color-badge-accent-text: var(--badge-accent-text, var(--accent-12)); /* its text */
+  --color-badge-danger: var(--badge-danger, var(--danger-3)); /* a danger badge */
+  --color-badge-danger-text: var(--badge-danger-text, var(--danger-11)); /* its text */
+  --color-message-own: var(--message-own, var(--accent-12)); /* a message the person sent, in a chat: a solid button's colours */
+  --color-message-own-text: var(--message-own-text, var(--neutral-1)); /* its text */
+}
+
+/* The overlay's shade unless a theme sets --overlay: transparent black,
+   Radix Colors' black alpha step 6, and step 8 in dark, where the page
+   behind is darker already. */
+:root,
+.light {
+  --overlay-shade: var(--black-a6);
+}
+.dark {
+  --overlay-shade: var(--black-a8);
+}
+
+/* Corners: Tailwind's radius scale, each step times --radius-factor, so
+   one setting sets every corner in the kit: data-radius="none", "small",
+   "medium" (the default) or "large" on the root or any part. */
+@theme inline {
+  --radius-xs: calc(0.125rem * var(--radius-factor));
+  --radius-sm: calc(0.25rem * var(--radius-factor));
+  --radius-md: calc(0.375rem * var(--radius-factor));
+  --radius-lg: calc(0.5rem * var(--radius-factor));
+  --radius-xl: calc(0.75rem * var(--radius-factor));
+  --radius-2xl: calc(1rem * var(--radius-factor));
+  --radius-3xl: calc(1.5rem * var(--radius-factor));
+  --radius-4xl: calc(2rem * var(--radius-factor));
+}
+:root,
+[data-radius="medium"] {
+  --radius-factor: 1;
+}
+[data-radius="none"] {
+  --radius-factor: 0;
+}
+[data-radius="small"] {
+  --radius-factor: 0.5;
+}
+[data-radius="large"] {
+  --radius-factor: 1.5;
+}
+
+/* The font: Tailwind's --font-sans, the system's font unless an app sets
+   its own:
+     @theme inline { --font-sans: "Inter", sans-serif; } */
+
+/* Dark mode by the same class Radix's dark scales use. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* The app's background and text: step 1 and step 12. The browser's own
+   parts -- scrollbars, form controls -- follow light or dark too. */
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+body {
+  /* The page's own background (--page), the neutral's step 1 unless a
+     theme sets it, and nothing else follows it: not the header or footer,
+     nor the columns. */
+  background-color: var(--page, var(--neutral-1));
+  color: var(--neutral-12);
+}
+
+/* The bars' heights, shared by everything with a header or a footer, so
+   they line up; used as h-(--header-height).
+
+   Each size times --scaling, so one setting sets the kit's density:
+   data-scaling="90%", "95%", "100%" (the default), "105%" or "110%" on
+   the root or any part, Radix Themes' steps for its scaling. Sizes only,
+   not text. Declared again on [data-scaling], so a part set apart gets its
+   own sizes. */
+:root,
+[data-scaling] {
+  --header-height: calc(44px * var(--scaling));
+  --footer-height: calc(48px * var(--scaling));
+    /* A column's width to start: 16rem, as shadcn's sidebar. */
+  --column-width: calc(256px * var(--scaling));
+  /* A row in a list (cell.ts, ROW), and the unit a column's drawer
+     is measured in (column-drawer.tsx, `rows`): 44px on a phone, 36px from
+     Tailwind's lg breakpoint (64rem) up. */
+  --row-height: calc(44px * var(--scaling));
+}
+@media (width >= 64rem) {
+  :root,
+  [data-scaling] {
+    --row-height: calc(36px * var(--scaling));
+  }
+}
+:root,
+[data-scaling="100%"] {
+  --scaling: 1;
+}
+[data-scaling="90%"] {
+  --scaling: 0.9;
+}
+[data-scaling="95%"] {
+  --scaling: 0.95;
+}
+[data-scaling="105%"] {
+  --scaling: 1.05;
+}
+[data-scaling="110%"] {
+  --scaling: 1.1;
+}
+:root {
+  /* The room the bottom bar takes on a phone, set by ColumnBar while it
+     shows (column.tsx), and by the rule below for a NavBar. */
+  --bar-space: 0px;
+}
+/* While the window is narrow and a NavBar is on the page (nav-bar.tsx),
+   the page and the sheets keep clear of it: a rule, not a script, so a
+   page drawn on a server has the room from the first paint. 64rem is the
+   kit's WIDE, Tailwind's lg. */
+@media (width < 64rem) {
+  :root:has([data-nav-bar]) {
+    --bar-space: calc(var(--footer-height) + env(safe-area-inset-bottom));
+  }
+}
+
+/* The finish: flat, the kit's look, unless data-finish asks for metal, on
+   the root or any part. One setting for every surface that wears it: every
+   bar, and anything an app gives the finish. Each lays --finish over its
+   colour as a background image (the `finish` utility below). Metal: a
+   shading top to bottom from the neutral's step 1 to its step 4, turning
+   with the theme. Text on it stays at step 11 or 12: on step 4, neutral 11
+   is at least 4.82:1 and neutral 12 at least 12.37:1 over the 6 neutrals in
+   light and dark, over WCAG's 4.5:1. Declared again for a part set .light
+   or .dark inside.
+
+   The metal itself is --metal, there always, for anything that is to be
+   metal whatever the finish: used as bg-(image:--metal). */
+:root,
+[data-finish="none"] {
+  --finish: none;
+}
+:root,
+.light,
+.dark {
+  --metal: linear-gradient(to bottom, var(--neutral-1), var(--neutral-4));
+}
+[data-finish="metal"],
+[data-finish="metal"] .light,
+[data-finish="metal"] .dark {
+  --finish: var(--metal);
+}
+
+/* The pattern finishes -- zebra, leopard, tiger, funfetti, sky and the
+   fish tank -- are in patterns.css, which an app imports after this file to
+   offer them, set as --finish as metal is. The words and icons on a bar
+   are marked `pattern-text`.
+
+   `finish` is how a part wears the finish: its background image, and the
+   mark patterns.css looks for. */
+@utility finish {
+  background-image: var(--finish);
+}
+
+/* Shadows: none, the kit's look, unless data-shadow asks for them --
+   small, medium or large, on the root or any part. Each part takes the step
+   for what it is, as Radix Themes gives smaller overlays a smaller shadow:
+     --surface-shadow   what floats and points at what opened it: popovers,
+                        hover cards, menus, select lists (surface.ts)
+     --overlay-shadow   dialogs, alert dialogs, floating columns
+   The values are Tailwind's shadow scale, copied, as Tailwind generates
+   only the variables a project uses. Used as shadow-(--surface-shadow). */
+:root,
+[data-shadow="none"] {
+  --surface-shadow: 0 0 #0000;
+  --overlay-shadow: 0 0 #0000;
+}
+[data-shadow="small"] {
+  --surface-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --overlay-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+[data-shadow="medium"] {
+  --surface-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --overlay-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+[data-shadow="large"] {
+  --surface-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --overlay-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* A column opened as a sheet below the lg breakpoint slides in from its
+   side and out again, over a dimmed page that fades: on Radix's
+   data-state, as Radix keeps the sheet until the closing animation ends.
+   Added to the theme as animate-* utilities. */
+@theme {
+  --animate-slide-in-left: slide-in-left 200ms ease-out;
+  --animate-slide-out-left: slide-out-left 150ms ease-in;
+  --animate-slide-in-right: slide-in-right 200ms ease-out;
+  --animate-slide-out-right: slide-out-right 150ms ease-in;
+  --animate-rise: rise 200ms ease-out;
+  --animate-sink: sink 150ms ease-in;
+  --animate-fade-in: fade-in 200ms ease-out;
+  --animate-fade-out: fade-out 150ms ease-in;
+
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+  --animate-open-height: open-height 200ms ease-out;
+  --animate-close-height: close-height 200ms ease-out;
+  --animate-drop: drop 200ms ease-out;
+  --animate-lift: lift 150ms ease-in;
+
+    /* An accordion's or a collapsible's content opening and closing, to the
+       height Radix measures; accordion.tsx and collapsible.tsx set
+       --open-height to theirs. */
+  @keyframes open-height {
+    from { height: 0; }
+    to { height: var(--open-height); }
+  }
+  @keyframes close-height {
+    from { height: var(--open-height); }
+    to { height: 0; }
+  }
+  /* A sheet from the top (sheet.tsx). */
+  @keyframes drop {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes lift {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+  }
+  /* A column's drawer (column-drawer.tsx), up from its footer. */
+  @keyframes rise {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes sink {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+}
+
+/* The wheel (feed.tsx, `wheel`): each article turns back as it nears the
+   top or bottom of the box, a scroll-driven animation, only where the
+   browser has it and motion is not reduced; elsewhere the wheel snaps and
+   fades without turning. `animation-timeline` after the shorthand, which
+   would reset it. */
+@keyframes wheel-turn {
+  from { transform: perspective(500px) rotateX(38deg) scale(0.92); }
+  50% { transform: none; }
+  to { transform: perspective(500px) rotateX(-38deg) scale(0.92); }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [role="feed"][data-wheel] > article {
+      animation: wheel-turn linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+/* Text fields at 16px on a touch screen, so a phone does not zoom in on
+   one when it takes focus: WebKit on iOS zooms a focused field under 16px.
+   Disabling zoom in the viewport instead would stop people zooming the
+   page. Any coarse pointer, not a width, as WebKit's rule has none. Outside
+   any layer, so it holds over a field's own text-sm; :where() keeps its
+   weight at zero for anything else. */
+@media (pointer: coarse) {
+  :where(textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"])) {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,19 @@
+/* Tailwind, the kit's theme, and the kit's files for Tailwind to read (it
+   skips node_modules). The @source path runs from this file to the kit;
+   in a project outside this workspace, "../node_modules/thriftyui/dist". */
+@import "tailwindcss";
+@import "thriftyui/theme.css";
+@source "../../../node_modules/thriftyui/dist";
+
+/* The popup's size: Chrome sizes a popup to its contents, "between 25x25
+   and 800x600 pixels" (developer.chrome.com, chrome.action reference, read
+   2026-10-16); this starter's own, 360 x 560. */
+body.popup {
+  width: 360px;
+  height: 560px;
+}
+html,
+body,
+#root {
+  height: 100%;
+}

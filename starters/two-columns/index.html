@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover: the page fills the display, notch and all; the
+         kit's header, bottom bar and sheets keep clear of it. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>App</title>
+    <!-- Dark before the first paint: as the address asks (?theme=dark or
+         light, when a page shows the starter in a frame), else as the
+         system is. src/use-system-dark.ts keeps it in step after. -->
+    <script>
+      const asked = new URLSearchParams(location.search).get('theme')
+      if (asked ? asked === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark')
+    </script>
+    <!-- The browser's own background dark from the first paint, before the
+         stylesheet comes (the kit's theme.css sets the same): color-scheme
+         on the root makes the canvas the browser draws dark (MDN,
+         color-scheme), so a page loading in a frame does not flash white. -->
+    <style>.dark { color-scheme: dark; }</style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

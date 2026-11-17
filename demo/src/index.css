@@ -1,0 +1,9 @@
+/* Tailwind, then the kit's theme and its presets (the Components page
+   chooses among them), and the kit's files for Tailwind to read
+   (it skips node_modules): as any app using the kit (kit/src/theme.css).
+   tailwindcss.com, Installation, "Using Vite", step 4; Detecting classes
+   in source files, "Explicitly registering sources". */
+@import "tailwindcss";
+@import "thriftyui/theme.css";
+@import "thriftyui/themes.css";
+@source "../../node_modules/thriftyui/dist";

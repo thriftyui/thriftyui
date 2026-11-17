@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" data-accent="gray">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thrifty Builder</title>
+    <!-- The accent gray, the neutral. The theme and finish before the
+         first paint: public/first-theme.js. -->
+    <script src="/first-theme.js"></script>
+    <!-- The window's own background dark from the first paint, before the
+         stylesheet comes (the kit's theme.css sets the same): color-scheme
+         on the root makes the canvas the browser draws dark (MDN,
+         color-scheme). -->
+    <style>.dark { color-scheme: dark; }</style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "thriftyui-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "kit",
+    "starters/page",
+    "starters/one-column",
+    "starters/two-columns",
+    "starters/floating",
+    "starters/extension",
+    "demo",
+    "templates/terminal-and-files"
+  ],
+  "scripts": {
+    "build": "npm run build -w kit",
+    "test": "npm test -w kit",
+    "typecheck": "npm run typecheck -w kit"
+  }
+}

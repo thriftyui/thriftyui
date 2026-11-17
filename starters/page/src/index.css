@@ -1,0 +1,6 @@
+/* Tailwind, the kit's theme, and the kit's files for Tailwind to read (it
+   skips node_modules). The @source path runs from this file to the kit;
+   in a project outside this workspace, "../node_modules/thriftyui/dist". */
+@import "tailwindcss";
+@import "thriftyui/theme.css";
+@source "../../../node_modules/thriftyui/dist";

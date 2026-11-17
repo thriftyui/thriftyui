@@ -1,0 +1,29 @@
+name: Bug in the kit
+description: Something in the kit does not work as its page says.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Issues are public, so leave out anything private. Security problems go to https://www.thriftyui.com/support instead.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce it
+      description: The smallest steps or code that show it. A link helps.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: The kit, React and your browser.
+      placeholder: thriftyui 0.1.0, React 19, Safari 18
+    validations:
+      required: true

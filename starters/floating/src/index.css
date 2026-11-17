@@ -1,0 +1,31 @@
+/* Tailwind, the kit's theme, and the kit's files for Tailwind to read (it
+   skips node_modules). The @source path runs from this file to the kit;
+   in a project outside this workspace, "../node_modules/thriftyui/dist". */
+@import "tailwindcss";
+@import "thriftyui/theme.css";
+@source "../../../node_modules/thriftyui/dist";
+
+/* The page under the floating columns: a blueprint board, in fixed colours
+   whatever the theme -- deep blue (#1f5a99, #0d2f57 at the edges), lighter toward the middle (the
+   light at 50% 45%), a fine grid every 25px in white at 10% and a heavier
+   one every 100px at 24%. Anything put on it can use the board's inks,
+   --blueprint-ink and --blueprint-pale. */
+.blueprint {
+  --blueprint-ink: #eef4fb;
+  --blueprint-pale: #b9d0ea;
+  color: var(--blueprint-ink);
+  background-color: #0d2f57;
+  background-image:
+    linear-gradient(to right, rgb(238 244 251 / 0.24) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(238 244 251 / 0.24) 1px, transparent 1px),
+    linear-gradient(to right, rgb(238 244 251 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(238 244 251 / 0.1) 1px, transparent 1px),
+    radial-gradient(75% 75% at 50% 45%, #1f5a99, #0d2f57);
+  background-size:
+    100px 100px,
+    100px 100px,
+    25px 25px,
+    25px 25px,
+    100% 100%;
+  background-attachment: local;
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- viewport-fit=cover: the page fills the display, notch and all; the
+         header, the bottom bar and the sheets keep clear of it with the
+         safe-area insets (MDN, viewport meta, viewport-fit; README). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ThriftyUI</title>
+  </head>
+  <body>
+    <!-- Dark before the first paint when the system is dark, so the page
+         does not flash light while the app loads (src/App.tsx). -->
+    <script>
+      if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark')
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

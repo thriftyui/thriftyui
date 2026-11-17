@@ -1,0 +1,8 @@
+/* Tailwind, the kit's theme, and the files for Tailwind to read (it skips
+   node_modules): the kit's. The kit's themes, for the gray accent on the
+   page's root (index.html). */
+@import "tailwindcss";
+@import "thriftyui/theme.css";
+@import "thriftyui/themes.css";
+@import "thriftyui/patterns.css";
+@source "../../../node_modules/thriftyui/dist";

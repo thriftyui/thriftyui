@@ -1,0 +1,16 @@
+{
+  // What is published: JavaScript and type declarations in dist/, the
+  // tests left out. Imports are written with their .ts or .tsx ending and
+  // rewritten to .js, so the output runs where Node resolves it (a server
+  // render) as well as in a bundler.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/test"]
+}

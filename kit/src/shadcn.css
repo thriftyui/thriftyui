@@ -1,0 +1,174 @@
+/* ThriftyUI themed by shadcn's tokens: imported after theme.css in a
+   project whose colours are shadcn's, the kit's parts take that project's
+   theme rather than the kit's own.
+
+     @import "tailwindcss";
+     @import "thriftyui/theme.css";
+     @import "thriftyui/shadcn.css";
+     @import "tailwindcss/theme.css" layer(theme);
+     @source "../node_modules/thriftyui/dist";
+     ... the project's :root, .dark and @theme inline, as shadcn writes them
+
+   The third import brings back Tailwind's palette, which theme.css turns
+   off and a shadcn project's code may use (bg-red-500). shadcn's own
+   variables are needed: --background, --foreground, --card, --primary,
+   --secondary, --muted and --accent with their -foreground, --destructive,
+   --border, --input, --ring, the --sidebar set and --radius, under :root
+   and .dark.
+
+   Three optional tokens of the kit's own, added as shadcn adds one, for
+   the bars: --header the page's, --sidebar-header a column's,
+   --dialog-header a dialog's; unset, a bar takes its body's colour.
+
+   shadcn's tokens are roles, one colour each; the kit's parts read twelve
+   steps of each scale, so the steps are drawn from the roles, the steps
+   between mixed in oklch. The contrast theme.css gives every Radix theme is
+   not assured here: it is the project's theme's. */
+
+:root,
+.light,
+.dark {
+  /* neutral: shadcn's surfaces, lines and text. The steps between its
+     roles are mixed from opaque ones -- shadcn's dark lines are see-through
+     (oklch(1 0 0 / 10%)), and a step mixed toward them would be too --
+     so 4 and 5, a hovered and a pressed ground, are muted a little toward
+     the text, stronger than 3 in light and dark; 6 and 7 are shadcn's own
+     lines, quieter than its grounds in dark, as shadcn draws them. */
+  --neutral-1: var(--background);
+  --neutral-2: color-mix(in oklch, var(--muted) 50%, var(--background));
+  --neutral-3: var(--muted);
+  --neutral-4: color-mix(in oklch, var(--foreground) 2.5%, var(--muted));
+  --neutral-5: color-mix(in oklch, var(--foreground) 4.5%, var(--muted));
+  --neutral-6: var(--border);
+  --neutral-7: var(--input);
+  --neutral-8: color-mix(in oklch, var(--muted-foreground) 30%, var(--muted));
+  --neutral-9: color-mix(in oklch, var(--muted-foreground) 60%, var(--muted));
+  --neutral-10: color-mix(in oklch, var(--muted-foreground) 80%, var(--muted));
+  --neutral-11: var(--muted-foreground);
+  --neutral-12: var(--foreground);
+
+  /* accent: shadcn's --primary, the brand, at step 9 -- lighter steps
+     toward the background, stronger ones toward the text. shadcn's own
+     --accent is a hover surface, and colours what is chosen and
+     highlighted below. */
+  --accent-1: color-mix(in oklch, var(--primary) 4%, var(--background));
+  --accent-2: color-mix(in oklch, var(--primary) 8%, var(--background));
+  --accent-3: color-mix(in oklch, var(--primary) 12%, var(--background));
+  --accent-4: color-mix(in oklch, var(--primary) 17%, var(--background));
+  --accent-5: color-mix(in oklch, var(--primary) 23%, var(--background));
+  --accent-6: color-mix(in oklch, var(--primary) 30%, var(--background));
+  --accent-7: color-mix(in oklch, var(--primary) 40%, var(--background));
+  --accent-8: color-mix(in oklch, var(--primary) 55%, var(--background));
+  --accent-9: var(--primary);
+  --accent-10: color-mix(in oklch, var(--primary) 85%, var(--foreground));
+  --accent-11: color-mix(in oklch, var(--primary) 70%, var(--foreground));
+  --accent-12: color-mix(in oklch, var(--primary) 45%, var(--foreground));
+
+  /* danger: shadcn's --destructive, drawn the same way. success and
+     warning keep theme.css's, as shadcn has no role for them. */
+  --danger-1: color-mix(in oklch, var(--destructive) 4%, var(--background));
+  --danger-2: color-mix(in oklch, var(--destructive) 8%, var(--background));
+  --danger-3: color-mix(in oklch, var(--destructive) 12%, var(--background));
+  --danger-4: color-mix(in oklch, var(--destructive) 17%, var(--background));
+  --danger-5: color-mix(in oklch, var(--destructive) 23%, var(--background));
+  --danger-6: color-mix(in oklch, var(--destructive) 30%, var(--background));
+  --danger-7: color-mix(in oklch, var(--destructive) 40%, var(--background));
+  --danger-8: color-mix(in oklch, var(--destructive) 55%, var(--background));
+  --danger-9: var(--destructive);
+  --danger-10: color-mix(in oklch, var(--destructive) 85%, var(--foreground));
+  --danger-11: color-mix(in oklch, var(--destructive) 70%, var(--foreground));
+  --danger-12: color-mix(in oklch, var(--destructive) 45%, var(--foreground));
+
+    /* The parts' own colours, each from the role shadcn's own parts give
+       it: a solid button its primary, a plain one its secondary, a field's
+       edge its input, the focus ring its ring, a column its sidebar, what is
+       chosen its accent; what floats its popover, edged by its border (its
+       own --popover read as it is); the shade behind a dialog black at half,
+       as shadcn's Dialog draws it; a danger button's words white, as
+       shadcn's; a bank card's edge and words a card's; a person's own
+       message its primary, as shadcn's Bubble draws the current user's. */
+  --page: var(--background);
+  --page-bar: var(--header, var(--background));
+  --page-line: var(--border);
+  --column: var(--sidebar);
+  --column-bar: var(--sidebar-header, var(--sidebar));
+  --column-line: var(--sidebar-border);
+  --column-edge: var(--sidebar-ring);
+  --column-edge-active: var(--sidebar-ring);
+  --card-line: var(--border);
+  --popover-line: var(--border);
+  --popover-text: var(--popover-foreground);
+  --overlay: oklch(0 0 0 / 0.5);
+  --bank-card-line: var(--border);
+  --bank-card-text: var(--card-foreground);
+  --bank-card-print: color-mix(in oklch, var(--muted-foreground) 60%, var(--muted));
+  --dialog: var(--background);
+  --dialog-bar: var(--dialog-header, var(--background));
+  --dialog-line: var(--border);
+  --button: var(--secondary);
+  --button-text: var(--secondary-foreground);
+  --button-solid: var(--primary);
+  --button-solid-text: var(--primary-foreground);
+  --button-danger: var(--destructive);
+  --button-danger-text: oklch(1 0 0);
+  --field: var(--background);
+  --field-border: var(--input);
+  --field-border-hover: color-mix(in oklch, var(--muted-foreground) 40%, var(--input));
+  --field-error: var(--destructive);
+  --focus: var(--ring);
+  --choice-on: var(--primary);
+  --choice-track: var(--input);
+  --chosen: var(--accent);
+  --chosen-text: var(--accent-foreground);
+  --menu-highlight: var(--accent);
+  --badge: var(--secondary);
+  --badge-text: var(--secondary-foreground);
+  --badge-accent: var(--primary);
+  --badge-accent-text: var(--primary-foreground);
+  --badge-danger: var(--destructive);
+  --badge-danger-text: oklch(1 0 0);
+  --message-own: var(--primary);
+  --message-own-text: var(--primary-foreground);
+}
+
+/* Inside a column ([data-column]), the greys from shadcn's sidebar set,
+   as shadcn's Sidebar draws itself, so a column of its own colour keeps
+   its text on its own ground. The column's text colour is set too, as
+   inherited text would take the page's. */
+[data-column],
+[data-column] .light,
+[data-column] .dark {
+  color: var(--neutral-12);
+  --neutral-1: var(--sidebar);
+  --neutral-2: color-mix(in oklch, var(--sidebar-accent) 50%, var(--sidebar));
+  --neutral-3: var(--sidebar-accent);
+  --neutral-4: color-mix(in oklch, var(--sidebar-foreground) 2.5%, var(--sidebar-accent));
+  --neutral-5: color-mix(in oklch, var(--sidebar-foreground) 4.5%, var(--sidebar-accent));
+  --neutral-6: var(--sidebar-border);
+  --neutral-7: var(--sidebar-border);
+  --neutral-8: color-mix(in oklch, var(--sidebar-foreground) 25%, var(--sidebar));
+  --neutral-9: color-mix(in oklch, var(--sidebar-foreground) 45%, var(--sidebar));
+  --neutral-10: color-mix(in oklch, var(--sidebar-foreground) 58%, var(--sidebar));
+  --neutral-11: color-mix(in oklch, var(--sidebar-foreground) 70%, var(--sidebar));
+  --neutral-12: var(--sidebar-foreground);
+  --chosen: var(--sidebar-accent);
+  --chosen-text: var(--sidebar-accent-foreground);
+  --menu-highlight: var(--sidebar-accent);
+  --focus: var(--sidebar-ring);
+  --message-own: var(--sidebar-primary);
+  --message-own-text: var(--sidebar-primary-foreground);
+}
+
+/* Corners: shadcn's scale from its --radius, the same multiples, so a
+   part of either kit has the same corner; --radius-xs, which shadcn does
+   not name, a quarter of it. data-radius has no effect here. */
+@theme inline {
+  --radius-xs: calc(var(--radius) * 0.25);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Extension",
+  "version": "0.1.0",
+  "description": "A blank extension built from ThriftyUI: one page, in the toolbar's popup and in the side panel.",
+  "minimum_chrome_version": "116",
+  "action": { "default_popup": "popup.html", "default_title": "Extension" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "permissions": ["sidePanel"]
+}

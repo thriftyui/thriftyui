@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Thrifty Builder, or something private
+    url: https://www.thriftyui.com/support
+    about: Email support, not a public issue. Security problems go there too.
